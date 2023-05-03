@@ -3,7 +3,7 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleODM from '../Models/MotorcycleODM';
 
 export default class MotorcycleService {
-  private createCarDomain(motorcycle: IMotorcycle | null): Motorcycle | undefined {
+  private createMotorcycleDomain(motorcycle: IMotorcycle | null): Motorcycle | undefined {
     if (motorcycle) {
       return new Motorcycle(motorcycle);
     }
@@ -12,6 +12,20 @@ export default class MotorcycleService {
   public async createNewMotorcycle(motorcycle: IMotorcycle) {
     const motorcycleODM = new MotorcycleODM();
     const newMotorcycle = await motorcycleODM.create(motorcycle);
-    return this.createCarDomain(newMotorcycle);
+    return this.createMotorcycleDomain(newMotorcycle);
+  }
+
+  public async findMotorcycle() {
+    const motorcycleODM = new MotorcycleODM();
+    const foundMotorcycle = await motorcycleODM.findMotorcycle();
+    const motorcycles = foundMotorcycle.map((motorcycle) => 
+      this.createMotorcycleDomain(motorcycle));
+    return motorcycles;
+  }
+
+  public async findMotorcycleById(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    const foundMotorcycle = await motorcycleODM.findMotorcycleById(id);
+    return this.createMotorcycleDomain(foundMotorcycle);
   }
 }
