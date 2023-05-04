@@ -1,5 +1,7 @@
+const modelMarea = 'Marea';
+
 export const carPostMockInput = {
-  model: 'Marea',
+  model: modelMarea,
   year: 2002,
   color: 'Black',
   status: true,
@@ -10,7 +12,7 @@ export const carPostMockInput = {
 
 export const carPostMockOutput = {
   id: '6348513f34c397abcad040b2',
-  model: 'Marea',
+  model: modelMarea,
   year: 2002,
   color: 'Black',
   status: true,
@@ -22,7 +24,7 @@ export const carPostMockOutput = {
 export const carGetMockOutput = [
   {
     id: '634852326b35b59438fbea2f',
-    model: 'Marea',
+    model: modelMarea,
     year: 2002,
     color: 'Black',
     status: true,
@@ -44,7 +46,7 @@ export const carGetMockOutput = [
 
 export const carGetByIdMockOutput = {
   id: '634852326b35b59438fbea2f',
-  model: 'Marea',
+  model: modelMarea,
   year: 2002,
   color: 'Black',
   status: true,
