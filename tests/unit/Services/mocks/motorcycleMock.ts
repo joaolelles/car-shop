@@ -1,7 +1,9 @@
 import IMotorcycle from '../../../../src/Interfaces/IMotorcycle';
 
+const modelHornet = 'Honda Cb 600f Hornet';
+
 export const motorcycleMockInput = {
-  model: 'Honda Cb 600f Hornet',
+  model: modelHornet,
   year: 2005,
   color: 'Yellow',
   status: true,
@@ -12,7 +14,7 @@ export const motorcycleMockInput = {
 
 export const motorcycleMockOutput = {
   id: '6348513f34c397abcad040b2',
-  model: 'Honda Cb 600f Hornet',
+  model: modelHornet,
   year: 2005,
   color: 'Yellow',
   status: true,
@@ -24,7 +26,7 @@ export const motorcycleMockOutput = {
 export const motorcycleGetMockOutput = [
   {
     id: '634852326b35b59438fbea2f',
-    model: 'Honda Cb 600f Hornet',
+    model: modelHornet,
     year: 2005,
     color: 'Yellow',
     status: true,
@@ -43,3 +45,14 @@ export const motorcycleGetMockOutput = [
     engineCapacity: 1000,
   },
 ];
+
+export const motorcycleGetByIdMockOutput = {
+  id: '634852326b35b59438fbea2f',
+  model: modelHornet,
+  year: 2005,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};

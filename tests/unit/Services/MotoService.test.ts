@@ -5,9 +5,9 @@ import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 import Motorcycle from '../../../src/Domains/Motorcycle';
 import { motorcycleMockInput, motorcycleMockOutput, 
-  motorcycleGetMockOutput } from './mocks/motorcycleMock';
+  motorcycleGetMockOutput, motorcycleGetByIdMockOutput } from './mocks/motorcycleMock';
 
-describe('Deveria cadastrar uma moto', function () {
+describe('Testando a service Motorcycle', function () {
   it('Deveria cadastrar uma moto com SUCESSO', async function () {
     // Arrange
     const motorcycleInput: IMotorcycle = motorcycleMockInput;
@@ -32,6 +32,18 @@ describe('Deveria cadastrar uma moto', function () {
 
     // Assert
     expect(result).to.be.deep.equal(motorcycleGetMockOutput);
+    sinon.restore();
+  });
+  it('Deveria listar uma moto com SUCESSO', async function () {
+    // Arrange    
+    sinon.stub(Model, 'findById').resolves(motorcycleGetByIdMockOutput);
+
+    // Act
+    const service = new MotorcycleService();
+    const result = await service.findMotorcycleById('634852326b35b59438fbea2f');
+
+    // Assert
+    expect(result).to.be.deep.equal(motorcycleGetByIdMockOutput);
     sinon.restore();
   });
 });
