@@ -25,6 +25,10 @@ routes.get(
   '/motorcycles/:id',
   (req, res, next) => new MotorcycleController(req, res, next).findMotorcycleById(),
 );
+routes.put(
+  '/motorcycles/:id',
+  (req, res, next) => new MotorcycleController(req, res, next).updateMotorcycleById(),
+);
 routes.post(
   '/motorcycles',
   (req, res, next) => new MotorcycleController(req, res, next).create(),
