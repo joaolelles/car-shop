@@ -35,6 +35,7 @@ export const carGetMockOutput = [
     model: 'Tempra',
     year: 1995,
     color: 'Black',
+    status: true,
     buyValue: 39,
     doorsQty: 2,
     seatsQty: 5,

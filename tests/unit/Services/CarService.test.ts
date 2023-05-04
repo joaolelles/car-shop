@@ -19,6 +19,7 @@ describe('Deveria cadastrar um carro', function () {
 
     // Assert
     expect(result).to.be.deep.equal(carOutput);
+    sinon.restore();
   });
   it('Deveria listar os carros com SUCESSO', async function () {
     // Arrange    
@@ -30,5 +31,6 @@ describe('Deveria cadastrar um carro', function () {
 
     // Assert
     expect(result).to.be.deep.equal(carGetMockOutput);
+    sinon.restore();
   });
 });

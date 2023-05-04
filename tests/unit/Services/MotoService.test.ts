@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 import Motorcycle from '../../../src/Domains/Motorcycle';
-import { motorcycleMockInput, motorcycleMockOutput } from './mocks/motorcycleMock';
+import { motorcycleMockInput, motorcycleMockOutput, 
+  motorcycleGetMockOutput } from './mocks/motorcycleMock';
 
 describe('Deveria cadastrar uma moto', function () {
   it('Deveria cadastrar uma moto com SUCESSO', async function () {
@@ -19,5 +20,18 @@ describe('Deveria cadastrar uma moto', function () {
 
     // Assert
     expect(result).to.be.deep.equal(motorcycleOutput);
+    sinon.restore();
+  });
+  it('Deveria listar as motos com SUCESSO', async function () {
+    // Arrange    
+    sinon.stub(Model, 'find').resolves(motorcycleGetMockOutput);
+
+    // Act
+    const service = new MotorcycleService();
+    const result = await service.findMotorcycle();
+
+    // Assert
+    expect(result).to.be.deep.equal(motorcycleGetMockOutput);
+    sinon.restore();
   });
 });
