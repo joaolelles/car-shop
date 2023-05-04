@@ -7,7 +7,7 @@ import Car from '../../../src/Domains/Car';
 import { carPostMockInput, carPostMockOutput, carGetMockOutput,
   carGetByIdMockOutput } from './mocks/carMock';
 
-describe('Deveria cadastrar um carro', function () {
+describe('Testando a service Car', function () {
   it('Deveria cadastrar um carro com SUCESSO', async function () {
     // Arrange
     const carInput: ICar = carPostMockInput;
