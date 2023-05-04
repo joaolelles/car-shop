@@ -4,13 +4,13 @@ import { Model } from 'mongoose';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 import Car from '../../../src/Domains/Car';
-import { carMockInput, carMockOutput } from './mocks/carMock';
+import { carPostMockInput, carPostMockOutput, carGetMockOutput } from './mocks/carMock';
 
 describe('Deveria cadastrar um carro', function () {
   it('Deveria cadastrar um carro com SUCESSO', async function () {
     // Arrange
-    const carInput: ICar = carMockInput;
-    const carOutput: Car = new Car(carMockOutput);
+    const carInput: ICar = carPostMockInput;
+    const carOutput: Car = new Car(carPostMockOutput);
     sinon.stub(Model, 'create').resolves(carOutput);
 
     // Act
@@ -20,9 +20,15 @@ describe('Deveria cadastrar um carro', function () {
     // Assert
     expect(result).to.be.deep.equal(carOutput);
   });
-  it('Deveria lançar uma exceção quando a key é inválida', async function () {
-    // Arrange
+  it('Deveria listar os carros com SUCESSO', async function () {
+    // Arrange    
+    sinon.stub(Model, 'find').resolves(carGetMockOutput);
+
     // Act
+    const service = new CarService();
+    const result = await service.findCars();
+
     // Assert
+    expect(result).to.be.deep.equal(carGetMockOutput);
   });
 });
