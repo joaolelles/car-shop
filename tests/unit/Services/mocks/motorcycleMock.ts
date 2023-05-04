@@ -56,3 +56,14 @@ export const motorcycleGetByIdMockOutput = {
   category: 'Street',
   engineCapacity: 600,
 };
+
+export const motorcyclePutByIdMockOutput = {
+  id: '634852326b35b59438fbea2f',
+  model: modelHornet,
+  year: 2005,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};

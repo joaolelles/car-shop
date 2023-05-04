@@ -5,7 +5,7 @@ import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 import Car from '../../../src/Domains/Car';
 import { carPostMockInput, carPostMockOutput, carGetMockOutput,
-  carGetByIdMockOutput } from './mocks/carMock';
+  carGetByIdMockOutput, carPutByIdMockOutput } from './mocks/carMock';
 
 describe('Testando a service Car', function () {
   it('Deveria cadastrar um carro com SUCESSO', async function () {
@@ -44,6 +44,20 @@ describe('Testando a service Car', function () {
 
     // Assert
     expect(result).to.be.deep.equal(carGetByIdMockOutput);
+    sinon.restore();
+  });
+  it('Deveria atualizar um carro com SUCESSO', async function () {
+    // Arrange    
+    const carInput: ICar = carPostMockInput;
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carPutByIdMockOutput);
+
+    // Act
+    const service = new CarService();
+    const result = await service
+      .updateCarById('634852326b35b59438fbea2f', carInput);
+
+    // Assert
+    expect(result).to.be.deep.equal(carPutByIdMockOutput);
     sinon.restore();
   });
 });

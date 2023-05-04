@@ -54,3 +54,14 @@ export const carGetByIdMockOutput = {
   doorsQty: 4,
   seatsQty: 5,
 };
+
+export const carPutByIdMockOutput = {
+  id: '634852326b35b59438fbea2f',
+  model: 'Marea',
+  year: 1992,
+  color: 'Red',
+  status: true,
+  buyValue: 12.000,
+  doorsQty: 2,
+  seatsQty: 5,
+};
