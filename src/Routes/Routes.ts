@@ -4,13 +4,20 @@ import MotorcycleController from '../Controllers/MotorcycleController';
 
 const routes = Router();
 
+const motorcycleIdRoute = '/motorcycles/:id';
+const carIdRoute = '/cars/:id';
+
 routes.get(
-  '/cars/:id',
+  carIdRoute,
   (req, res, next) => new CarController(req, res, next).findCarById(),
 );
 routes.put(
-  '/cars/:id',
+  carIdRoute,
   (req, res, next) => new CarController(req, res, next).updateCarById(),
+);
+routes.delete(
+  carIdRoute,
+  (req, res, next) => new CarController(req, res, next).deleteCarById(),
 );
 routes.post(
   '/cars',
@@ -22,12 +29,16 @@ routes.get(
 );
 
 routes.get(
-  '/motorcycles/:id',
+  motorcycleIdRoute,
   (req, res, next) => new MotorcycleController(req, res, next).findMotorcycleById(),
 );
 routes.put(
-  '/motorcycles/:id',
+  motorcycleIdRoute,
   (req, res, next) => new MotorcycleController(req, res, next).updateMotorcycleById(),
+);
+routes.delete(
+  motorcycleIdRoute,
+  (req, res, next) => new MotorcycleController(req, res, next).deleteMotorcycleById(),
 );
 routes.post(
   '/motorcycles',

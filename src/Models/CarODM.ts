@@ -6,6 +6,8 @@ import {
 import ICar from '../Interfaces/ICar';
 import AbstractODM from './AbstractODM';
 
+const invalidMongoId = 'Invalid mongo id';
+
 export default class CarODM extends AbstractODM<ICar> {
   constructor() {
     const schema = new Schema<ICar>({
@@ -29,16 +31,23 @@ export default class CarODM extends AbstractODM<ICar> {
   }
 
   public async findCarById(id: string): Promise<ICar | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
     return this.model.findById(id);
   }
 
   public async updateCarById(id: string, obj: ICar): Promise<ICar | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
     return this.model.findByIdAndUpdate(
       { _id: id },
       { ...obj } as UpdateQuery<ICar>,
       { new: true },
+    );
+  }
+
+  public async deleteCarById(id: string) {
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
+    return this.model.findByIdAndDelete(
+      { _id: id },
     );
   }
 }

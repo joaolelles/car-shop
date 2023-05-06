@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
 
+const motorcycleNotFound = 'Motorcycle not found';
+
 export default class MotorcycleController {
   private req: Request;
   private res: Response;
@@ -44,7 +46,7 @@ export default class MotorcycleController {
     try {
       const motorcycleFound = await this.service.findMotorcycleById(id);
       if (!motorcycleFound) {
-        return this.res.status(404).json({ message: 'Motorcycle not found' });
+        return this.res.status(404).json({ message: motorcycleNotFound });
       }
       return this.res.status(200).json(motorcycleFound);
     } catch (error) {
@@ -60,7 +62,20 @@ export default class MotorcycleController {
     try {
       const motorcycleFound = await this.service.updateMotorcycleById(id, motorcycle);
       if (!motorcycleFound) {
-        return this.res.status(404).json({ message: 'Motorcycle not found' });
+        return this.res.status(404).json({ message: motorcycleNotFound });
+      }
+      return this.res.status(200).json(motorcycleFound);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async deleteMotorcycleById() {
+    const { id } = this.req.params;
+    try {
+      const motorcycleFound = await this.service.deleteMotorcycleById(id);
+      if (!motorcycleFound) {
+        return this.res.status(404).json({ message: motorcycleNotFound });
       }
       return this.res.status(200).json(motorcycleFound);
     } catch (error) {

@@ -3,6 +3,8 @@ import {
 } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import AbstractODM from './AbstractODM';
+
+const invalidMongoId = 'Invalid mongo id';
   
 export default class MotorcycleODM extends AbstractODM<IMotorcycle> {
   constructor() {
@@ -27,16 +29,23 @@ export default class MotorcycleODM extends AbstractODM<IMotorcycle> {
   }
 
   public async findMotorcycleById(id: string): Promise<IMotorcycle | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
     return this.model.findById(id);
   }
 
   public async updateMotorcycleById(id: string, obj: IMotorcycle): Promise<IMotorcycle | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
     return this.model.findByIdAndUpdate(
       { _id: id },
       { ...obj } as UpdateQuery<IMotorcycle>,
       { new: true },
+    );
+  }
+
+  public async deleteMotorcycleById(id: string) {
+    if (!isValidObjectId(id)) throw Error(invalidMongoId);
+    return this.model.findByIdAndDelete(
+      { _id: id },
     );
   }
 }
